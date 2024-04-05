@@ -8,7 +8,7 @@ pipeline {
         stage('Lint Checks') {
             steps {
                 script {
-                    sample.call('Ola')
+                    sample.info('Ola')
                 }
                 sh "echo Installing Lint Checker"
                 sh "npm i jslint"
