@@ -128,34 +128,30 @@ app.get('/search/:text', (req, res) => {
     }
 });
 
-if (process.env.MONGO == 'true') {
-// set up Mongo
-function mongoConnect() {
-    return new Promise((resolve, reject) => {
-        var mongoURL = process.env.MONGO_URL || 'mongodb://mongodb:27017/catalogue';
-        mongoClient.connect(mongoURL, (error, client) => {
-            if(error) {
-                reject(error);
-            } else {
-                db = client.db('catalogue');
-                collection = db.collection('products');
-                resolve('connected');
-            }
-        });
-    });
-}
-}
+// set up for local Mongo : Uncomment if you want to use mongodb locally
+// Uncomment it when using Mongo on EC2
+// function mongoConnect() {
+//     return new Promise((resolve, reject) => {
+//         var mongoURL = process.env.MONGO_URL || 'mongodb://mongodb:27017/catalogue';
+//         mongoClient.connect(mongoURL, (error, client) => {
+//             if(error) {
+//                 reject(error);
+//             } else {
+//                 db = client.db('catalogue');
+//                 collection = db.collection('products');
+//                 resolve('connected');
+//             }
+//         });
+//     });
+// }
 
-if (process.env.DOCUMENTDB == 'true') {
+// Code for Document DB, 
 function mongoConnect() {
     return new Promise((resolve, reject) => {
-    var mongoURL = process.env.MONGO_URL || 'mongodb://username:password@mongodb:27017/catalogue?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false';
+    var mongoURL = process.env.MONGO_URL || 'mongodb://admin1:roboshop-dev-docdb.cluster-c93whrwsdihk.us-east-1.docdb.amazonaws.com:27017/catalogue?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false';
     var client = mongoClient.connect(mongoURL,
       {
-        // Mutable & Immutable
-        //tlsCAFile: `/home/roboshop/catalogue/rds-combined-ca-bundle.pem` //Specify the DocDB; cert
-        // Container
-        tlsCAFile: `/home/roboshop/catalogue/rds-combined-ca-bundle.pem` //Specify the DocDB; cert
+        tlsCAFile: `/home/roboshop/global-bundle.pem` //Specify the DocDB; cert to be used, ensure it has to present on server
     }, (error, client) => {
     if(error) {
         reject(error);
@@ -167,10 +163,8 @@ function mongoConnect() {
 });
 });
 }
-}
 
-
-// mongodb connection retry loop
+// mongodb connection retry loop.
 function mongoLoop() {
     mongoConnect().then((r) => {
         mongoConnected = true;
