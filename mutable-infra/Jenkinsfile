@@ -1,21 +1,24 @@
 pipeline {
     agent any 
+    parameters {
+        choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
+    }
     stages {
         stage('Terraform Init') {
             steps {
                 sh "cd mutable-infra/"
-                sh "terrafile -f env-dev/Terrafile"
-                sh "terraform init --backend-config=env-dev/dev-backend.tfvars"
+                sh "terrafile -f env-${ENV}/Terrafile"
+                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars"
             }
         }
         stage('Terraform Plan') {
             steps {
-                sh "terraform plan --var-file env-dev/dev.tfvars"
+                sh "terraform plan --var-file env-${ENV}/${ENV}-backend.tfvars"
             }
         }
         stage('Terraform Action') {
             steps {
-                sh "terraform apply -auto-approva --var-file env-dev/dev.tfvars"
+                sh "terraform apply -auto-approva --var-fileenv-${ENV}/${ENV}-backend.tfvars"
             }
         }
     }
