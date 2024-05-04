@@ -1,2 +1,3 @@
 COMPONENT = "catalogue"
-INTERNAL =   true 
+INTERNAL  = true 
+APP_PORT  = 8080
