@@ -1,0 +1,2 @@
+COMPONENT = "catalogue"
+INTERNAL =   true 
