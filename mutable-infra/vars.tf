@@ -2,6 +2,7 @@ variable "ENV" {}
 variable "INTERNAL" {}
 variable "COMPONENT" {}
 variable "APP_PORT" {}
+variable "APP_VERSION" {}
 
 
 # Spot Variables
