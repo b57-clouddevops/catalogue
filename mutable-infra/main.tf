@@ -8,4 +8,5 @@ module "catalogue" {
     SPOT_INSTANCE_TYPE      = var.SPOT_INSTANCE_TYPE
     OD_INSTANCE_COUNT       = var.OD_INSTANCE_COUNT
     OD_INSTANCE_TYPE        = var.OD_INSTANCE_TYPE
+    APP_VERSION             = var.APP_VERSION
 }
