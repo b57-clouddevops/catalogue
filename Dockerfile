@@ -3,8 +3,8 @@ RUN         useradd roboshop
 WORKDIR     /home/roboshop  
 # You need to run the npm intall to have the npm modules available here.
 COPY        node_modules/  node_modules/
-COPY        server.js   . 
-COPY        package.json  package.json
+COPY        server.js . 
+COPY        package.json .
 COPY        ["node" , "server.js"] /home/roboshop/
 
 
