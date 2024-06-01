@@ -5,7 +5,7 @@ WORKDIR     /home/roboshop
 COPY        node_modules/  node_modules/
 COPY        server.js . 
 COPY        package.json .
-COPY        ["node" , "server.js"] /home/roboshop/
+ENTRYPOINT  ["node" , "server.js"] /home/roboshop/
 
 
 # Catalogue talks to DocumentDB, authentication to documentdb needs to have PEM File ,so ensure you have it downloaded here before docker build.
