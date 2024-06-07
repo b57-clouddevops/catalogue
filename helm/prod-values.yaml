@@ -1,5 +1,5 @@
 appName: catalogue 
-replicaCount: 3
+replicaCount: 5
 maxUnavailable: 50
 appVersion: 305
 containerPort: 8080
@@ -12,7 +12,7 @@ cpuLimit: "400m"
 memReq: "100Mi"
 memLimit: "500Mi"
 
-minReplicas: 3
-maxReplicas: 10
+minReplicas: 5
+maxReplicas: 30
 
-averageUtilization: 80
+averageUtilization: 75
