@@ -36,12 +36,12 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 60
         resources:
-          requests:
-          memory: {{ .Values.memReq }}
-          cpu: "{{ .Values.cpuReq }}"
+          requests: 
+            memory: {{ .Values.memReq }}
+            cpu: {{ .Values.cpuReq }}
           limits:
             memory: {{ .Values.memLimit }}
-            cpu: "{{ .Values.cpuLimit }}"
+            cpu: {{ .Values.cpuLimit }}
         envFrom:  
           - configMapRef:
               name: {{ .Values.appName }}-cm

@@ -6,11 +6,11 @@ containerPort: 8080
 image: 355449129696.dkr.ecr.us-east-1.amazonaws.com/catalogue
 tag: 302
 
-cpuLimit: "400m"
-memLimit: "500Mi"
-
 cpuReq: "250m"
+cpuLimit: "400m"
+
 memReq: "100Mi"
+memLimit: "500Mi"
 
 minReplicas: 3
 maxReplicas: 10
