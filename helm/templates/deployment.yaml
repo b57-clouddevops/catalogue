@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.appName }}
-        image: {{. Values.image }}:{{ .Values.appVersion }}
+        image: {{ .Values.image }}:{{ .Values.appVersion }}
         ports:              # port where your container listens
         - containerPort: {{ .Values.containerPort }}
         livenessProbe:
